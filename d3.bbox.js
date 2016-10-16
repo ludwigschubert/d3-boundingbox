@@ -23,10 +23,9 @@ root.d3lb.bbox = function () {
         resizeend: null
     }
 
-    //
     function my(selection) {
         var drag = d3.drag()
-            .subject()
+            .subject(function(d, i) { return {x: this.getAttribute("x"), y: this.getAttribute("y")}; })
             .on("drag.lbbbox", dragmove)
             .on("start.lbbbox", dragstart)
             .on("end.lbbbox", dragend)
