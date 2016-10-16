@@ -23,12 +23,13 @@ root.d3lb.bbox = function () {
         resizeend: null
     }
 
+    //
     function my(selection) {
-        var drag = d3.behavior.drag()
-            .origin(function(d, i) { return {x: this.getAttribute("x"), y: this.getAttribute("y")}; })
+        var drag = d3.drag()
+            .subject()
             .on("drag.lbbbox", dragmove)
-            .on("dragstart.lbbbox", dragstart)
-            .on("dragend.lbbbox", dragend)
+            .on("start.lbbbox", dragstart)
+            .on("end.lbbbox", dragend)
         selection.call(drag)
         selection.on("mousemove.lbbbox", move)
         selection.on("mouseleave.lbbbox", leave)
